@@ -1,14 +1,22 @@
 FROM node:18-alpine
 
-ENV NODE_ENV=production
+RUN mkdir /app
+
+COPY CM-memory-seller/* /app
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+RUN npm install 
 
-RUN npm install --production
+CMD ["npm", "start"]
 
-COPY . .
 
-CMD ["node", "server.js"]
 
+# ______________
+# FROM amd64/eclipse-temurin:11
+# RUN mkdir /opt/app
+# COPY target/japp-1.jar /opt/app
+
+# CMD ["java", "-jar", "/opt/app/japp-1.jar"]
+
+# EXPOSE 8080

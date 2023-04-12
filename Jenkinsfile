@@ -19,12 +19,12 @@ pipeline{
             
 //         }
 
-//         stage("create docker image"){
-//             steps{
-//                 sh "docker build  -t martur/app:$BUILD_NUMBER ."   
-//             }
+        stage("create docker image"){
+            steps{
+                sh "docker build  -t martur/app:$BUILD_NUMBER ."   
+            }
             
-//         }
+        }
 //         stage("push image to hub"){
 //             steps{
 //                 script{
