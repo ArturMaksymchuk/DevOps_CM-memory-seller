@@ -5,6 +5,7 @@ pipeline{
             steps{
                 sh 'pwd'
                 sh 'ls -la'
+                sh 'rm -r CM-memory-seller'
                 sh 'git clone -b dev https://github.com/CMPetManager/CM-memory-seller.git'
                 sh 'pwd'
                 sh 'ls -la'
