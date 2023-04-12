@@ -5,7 +5,7 @@ pipeline{
             steps{
                 sh 'pwd'
                 sh 'ls -la'
-                sh 'rm -r CM-memory-seller'
+                sh 'rm -rf CM-memory-seller'
                 sh 'git clone -b dev https://github.com/CMPetManager/CM-memory-seller.git'
                 sh 'pwd'
                 sh 'ls -la'
@@ -23,6 +23,14 @@ pipeline{
         stage("create docker image"){
             steps{
                 sh "docker build  -t martur/app:$BUILD_NUMBER ."   
+            }
+            
+        }
+
+
+        stage("run docker image"){
+            steps{
+                sh "docker run -d -p 3333:3000 martur/app:$BUILD_NUMBER"   
             }
             
         }

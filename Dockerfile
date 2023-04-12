@@ -1,22 +1,15 @@
-FROM node:18-alpine
+FROM node:lts-alpine
 
 RUN mkdir /app
 
-COPY CM-memory-seller/* /app
+COPY CM-memory-seller /app
 
-WORKDIR /app
+WORKDIR /app/CM-memory-seller
+
+# RUN git checkout dev
 
 RUN npm install 
 
 CMD ["npm", "start"]
 
-
-
-# ______________
-# FROM amd64/eclipse-temurin:11
-# RUN mkdir /opt/app
-# COPY target/japp-1.jar /opt/app
-
-# CMD ["java", "-jar", "/opt/app/japp-1.jar"]
-
-# EXPOSE 8080
+EXPOSE 3000
