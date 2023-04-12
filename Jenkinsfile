@@ -6,6 +6,8 @@ pipeline{
                 sh 'pwd'
                 sh 'ls -la'
                 sh 'git clone -b dev git@github.com:CMPetManager/CM-memory-seller.git'
+                sh 'pwd'
+                sh 'ls -la'
             }
             
         }
