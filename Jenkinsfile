@@ -22,8 +22,8 @@ pipeline{
 
         stage("3 stop and delete all docker conteiner"){
             steps{
-                sh "docker stop  $(docker ps)" 
-                sh "docker rm  $(docker ps -a)"  
+                sh "docker stop  \$(docker ps)" 
+                sh "docker rm  \$(docker ps -a)"  
             }
             
         }
@@ -37,7 +37,7 @@ pipeline{
 
         stage("5 delete previous docker image"){
             steps{
-                sh "docker rmi $(docker images)"   
+                sh "docker rmi \$(docker images)"   
             }
             
         }
