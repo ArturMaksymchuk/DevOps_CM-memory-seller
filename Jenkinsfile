@@ -1,5 +1,8 @@
 pipeline{
-    agent any
+    agent aws
+    options{
+        timeout(5)
+    }
     stages{
                 stage("Test"){
             steps{
