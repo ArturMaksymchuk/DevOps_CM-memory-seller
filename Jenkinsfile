@@ -13,17 +13,17 @@ pipeline{
             
         }
 
-        stage("2 create docker image"){
-            steps{
-                sh "docker build  -t martur/app:$BUILD_NUMBER ."   
-            }
-            
-        }
-
-        stage("3 stop and delete all docker conteiner"){
+        stage("2 stop and delete all docker conteiner"){
             steps{
                 sh "docker stop  \$(docker ps)" 
                 sh "docker rm  \$(docker ps -a)"  
+            }
+            
+        }
+        
+        stage("3 create docker image"){
+            steps{
+                sh "docker build  -t martur/app:$BUILD_NUMBER ."   
             }
             
         }
