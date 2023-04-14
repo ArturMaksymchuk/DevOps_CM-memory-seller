@@ -16,7 +16,7 @@ pipeline{
         stage("2 stop and delete all docker conteiner"){
             steps{
                 sh "docker ps -aq | xargs docker stop" 
-                sh "docker ps -aq | xargsdocker rm"  
+                sh "docker ps -aq | xargs docker rm"  
             }
             
         }
@@ -37,7 +37,7 @@ pipeline{
 
         stage("5 delete previous docker image"){
             steps{
-                sh "docker rmi ${docker images}"   
+                sh "docker images -q | xargs docker rmi"   
             }
             
         }
