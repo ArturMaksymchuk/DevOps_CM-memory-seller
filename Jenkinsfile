@@ -37,7 +37,7 @@ pipeline{
 
         stage("5 delete previous docker image"){
             steps{
-                sh "docker images -q | xargs docker rmi"   
+                sh "docker images -q | xargs docker rmi || true"   
             }
             
         }
