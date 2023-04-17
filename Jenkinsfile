@@ -1,5 +1,5 @@
 pipeline{
-    agent {aws}
+    agent {label 'aws'}
     options{
         timeout(5)
     }
