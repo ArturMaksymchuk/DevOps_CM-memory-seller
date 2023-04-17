@@ -15,7 +15,7 @@ pipeline{
 
         stage("2 stop and delete all docker conteiner"){
             steps{
-                sh "docker ps -aq | xargs docker stop" 
+                sh "docker ps -aq | xargs docker stop|| true" 
                 sh "docker ps -aq | xargs docker rm || true"   
             }
             
