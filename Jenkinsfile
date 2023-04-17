@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent aws
     options{
         timeout(5)
     }
@@ -35,12 +35,13 @@ pipeline{
             
         }
 
-        stage("5 delete previous docker image"){
+        stage("5 clear docker temp"){
             steps{
-                sh "docker images -q | xargs docker rmi || true"   
+                sh "docker system prune -af"   
             }
             
         }
+        
    
     }
     
