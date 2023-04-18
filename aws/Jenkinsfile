@@ -16,10 +16,15 @@ pipeline{
 // try count step
         stage('Count Passed Status') {
             steps {
+            environment {
+              curent_instance_id = 'i-060cbf0557e0ba20d' 
+              region_name = 'eu-central-1'
+
+              }
                 script {
                      withAWS(region: 'eu-central-1', credentials: 'aws_pokemi') {
 
-                    def instanceId = 'i-060cbf0557e0ba20d' // Replace with your instance ID
+                    def instanceId = curent_instance_id 
                     def cmd = "aws ec2 describe-instance-status --instance-ids ${instanceId}"
                     def output = sh(returnStdout: true, script: cmd).trim()
                     def instanceStatuses = new groovy.json.JsonSlurper().parseText(output).InstanceStatuses
@@ -29,6 +34,17 @@ pipeline{
                         count += instanceStatus.SystemStatus.Details.count { it.Status == 'passed' }
                     }
                     println "Number of 'passed' statuses: ${count}"
+
+                if (${count} == 2) {
+                        
+                        echo "all good"
+                      } else {
+                         sh "aws ec2 stop-instances --instance-ids $curent_instance_id"
+                         sh "aws ec2 stop-instances --instance-ids $curent_instance_id"
+
+                          
+                      }
+
                 }
             }
         }
